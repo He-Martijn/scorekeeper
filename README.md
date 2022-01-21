@@ -1,6 +1,16 @@
 # scorekeeper
 
 scorekeeper app as teached by Angela Yu
+in the Flutter course on Udemy. 
+
+This app is published for other students to learn from what I do.
+Just as I learned a lot from studying the work of other students. 
+
+This repo is not going to be published as an app  in any of the app stores. 
+
+As far as my ownership of this project goes it is published under the MIT license.
+
+Regards, Martijn. 
 
 ## Getting Started
 
