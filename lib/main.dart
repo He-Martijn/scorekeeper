@@ -46,7 +46,6 @@ class _MyBodyAppState extends State<MyBodyApp> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          //TODO: Put some text in the buttons
           Expanded(
             flex: 5,
               child: Center(
@@ -67,6 +66,12 @@ class _MyBodyAppState extends State<MyBodyApp> {
                   width: 200.0,
                   height: 75.0,
                   color: Colors.green,
+                  child: Center(
+                    child: Text('true',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),),
+                  ),
                 ),
               ),
           ),
@@ -80,6 +85,12 @@ class _MyBodyAppState extends State<MyBodyApp> {
                 width: 200.0,
                 height: 75.0,
                 color: Colors.red,
+                child: Center(
+                  child: Text('false',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),),
+                ),
               ),
             ),
           ),
