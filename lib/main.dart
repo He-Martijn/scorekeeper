@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 
 void main() {
+  print('void main is called');
   runApp(const MyApp());
 }
 
@@ -45,6 +46,7 @@ class _MyBodyAppState extends State<MyBodyApp> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          //TODO: Put some text in the buttons
           Expanded(
             flex: 5,
               child: Center(
@@ -81,6 +83,12 @@ class _MyBodyAppState extends State<MyBodyApp> {
               ),
             ),
           ),
+          Row(
+            children: [
+              Icon(Icons.check,color: Colors.green,),
+              Icon(Icons.close,color: Colors.red,),
+            ],
+          )
         ],
       )
     );
