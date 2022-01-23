@@ -37,6 +37,8 @@ class MyBodyApp extends StatefulWidget {
 }
 
 class _MyBodyAppState extends State<MyBodyApp> {
+
+  List <Icon> scoreKeeper = [];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,6 +63,9 @@ class _MyBodyAppState extends State<MyBodyApp> {
               child: TextButton(
                 onPressed: (){
                   print('true is pressed');
+                  setState(() {
+                    scoreKeeper.add(Icon(Icons.check, color: Colors.green,),);
+                  });
                 },
                 child: Container(
                   width: 200.0,
@@ -80,6 +85,9 @@ class _MyBodyAppState extends State<MyBodyApp> {
             child: TextButton(
               onPressed: (){
                 print('false is pressed');
+                setState(() {
+                  scoreKeeper.add(Icon(Icons.close,color: Colors.red,),);
+                });
               },
               child: Container(
                 width: 200.0,
@@ -94,12 +102,7 @@ class _MyBodyAppState extends State<MyBodyApp> {
               ),
             ),
           ),
-          Row(
-            children: [
-              Icon(Icons.check,color: Colors.green,),
-              Icon(Icons.close,color: Colors.red,),
-            ],
-          )
+          Row (children: scoreKeeper),
         ],
       )
     );
