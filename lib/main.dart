@@ -1,4 +1,6 @@
 import 'dart:ffi';
+import 'dart:math';
+
 
 import 'package:flutter/material.dart';
 
@@ -38,7 +40,26 @@ class MyBodyApp extends StatefulWidget {
 
 class _MyBodyAppState extends State<MyBodyApp> {
 
+  //Variables
   List <Icon> scoreKeeper = [];
+  List <String> questions = [
+    'You can lead a cow down stairs,but not upstairs.',
+    'Approx. one quarter of the human bones are in the feet',
+    'A slug\'s blood is green'
+  ];
+
+  //Functions
+  String pickQuestion(){
+    print('pickQuestion is called');
+    int maxInt = questions.length;
+    print('maxInt = $maxInt');
+    //int randomInt = random().nextInt(maxInt);
+    //TODO: Add dart:math package to pubspec.yaml
+    // Right?
+
+    return 'test';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
