@@ -45,7 +45,8 @@ class _MyBodyAppState extends State<MyBodyApp> {
   List <String> questions = [
     'You can lead a cow down stairs,but not upstairs.',
     'Approx. one quarter of the human bones are in the feet',
-    'A slug\'s blood is green'
+    'A slug\'s blood is green',
+    'A \ and \' is a String in Android Studio'
   ];
 
   //Functions
@@ -53,11 +54,12 @@ class _MyBodyAppState extends State<MyBodyApp> {
     print('pickQuestion is called');
     int maxInt = questions.length;
     print('maxInt = $maxInt');
-    //int randomInt = random().nextInt(maxInt);
-    //TODO: Add dart:math package to pubspec.yaml
-    // Right?
+    int randomInt = Random().nextInt(maxInt);
+    print('randomInt = $randomInt');
+    String pickedSentence = questions[randomInt];
+    print('pickedSentence = $pickedSentence');
 
-    return 'test';
+    return pickedSentence;
   }
 
   @override
@@ -72,7 +74,7 @@ class _MyBodyAppState extends State<MyBodyApp> {
           Expanded(
             flex: 5,
               child: Center(
-                child: Text('Good question',
+                child: Text(pickQuestion(),
                 style: TextStyle(
                   color: Colors.white,
                   ),
@@ -86,6 +88,7 @@ class _MyBodyAppState extends State<MyBodyApp> {
                   print('true is pressed');
                   setState(() {
                     scoreKeeper.add(Icon(Icons.check, color: Colors.green,),);
+                    pickQuestion();
                   });
                 },
                 child: Container(
@@ -108,6 +111,7 @@ class _MyBodyAppState extends State<MyBodyApp> {
                 print('false is pressed');
                 setState(() {
                   scoreKeeper.add(Icon(Icons.close,color: Colors.red,),);
+                  pickQuestion();
                 });
               },
               child: Container(
