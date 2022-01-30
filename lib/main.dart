@@ -1,5 +1,7 @@
 import 'dart:ffi';
 import 'dart:math';
+import 'package:scorekeeper/testcodeclass.dart';
+
 import 'questionclass.dart';
 
 
@@ -47,10 +49,14 @@ class _MyBodyAppState extends State<MyBodyApp> {
 
 
   var questionClass = QuestionClass();
+  var testCodeClass = TestCodeclass();
+
   void addQuestions(){
     print('----- addQuestions is called');
     
     if (questionsAreNotAdded) {
+      String secretCode = testCodeClass.secretCode;
+      print('The secret code is $secretCode');
       questionClass.addClassQuestion(
           q: 'You can lead a cow down stairs,but not upstairs.', a: false);
       questionClass.addClassQuestion(
