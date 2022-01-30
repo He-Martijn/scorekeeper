@@ -1,5 +1,6 @@
 import 'dart:ffi';
 import 'dart:math';
+import 'questionclass.dart';
 
 
 import 'package:flutter/material.dart';
@@ -41,8 +42,42 @@ class MyBodyApp extends StatefulWidget {
 class _MyBodyAppState extends State<MyBodyApp> {
 
   //Variables
-  List <Icon> scoreKeeper = [];
 
+  bool questionsAreNotAdded = true;
+
+
+  var questionClass = QuestionClass();
+  void addQuestions(){
+    print('----- addQuestions is called');
+    
+    if (questionsAreNotAdded) {
+      questionClass.addClassQuestion(
+          q: 'You can lead a cow down stairs,but not upstairs.', a: false);
+      questionClass.addClassQuestion(
+          q: 'Approx. one quarter of the human bones are in the feet', a: true);
+      questionClass.addClassQuestion(q: 'A slug\'s blood is green', a: true);
+      questionClass.addClassQuestion(
+          q: 'A \ and \' is a String in Android Studio', a: true);
+
+      print('Both lists in questionClass : ');
+      print('The questions :');
+      print(questionClass.questionClassList);
+      print('And the answers :');
+      print(questionClass.answerClassList);
+
+      questionsAreNotAdded = false;
+      print('questionsAreNotAdded = $questionsAreNotAdded');
+    } else {
+      print('addQuestions is called, but this job is already done. ');
+
+    }
+
+  }
+
+
+
+  List <Icon> scoreKeeper = [];
+  /*
   List <List> questionAndAnswers = [
     ['You can lead a cow down stairs,but not upstairs.',
       'Approx. one quarter of the human bones are in the feet',
@@ -63,23 +98,29 @@ class _MyBodyAppState extends State<MyBodyApp> {
     'A slug\'s blood is green',
     'A \ and \' is a String in Android Studio'
   ];
-
+  */
   //Functions
-  int nextQuestion = 0;
+  int nextQuestion = 1;
 
   int pickQuestion(){
-    print('pickQuestion is called');
-    int maxInt = questions.length;
+    print('----- pickQuestion is called');
+    //int maxInt = questions.length;
+    int maxInt = questionClass.questionClassList.length;
     print('maxInt = $maxInt');
     int randomInt = Random().nextInt(maxInt);
     print('randomInt = $randomInt');
 
+    //questionClass.testFunc();
     return randomInt;
   }
 
   String question(int questionNumber){
-    List questionList = questionAndAnswers[0];
-    String thisQuestion = questionList[questionNumber];
+    print('----- question is called');
+    //List questionList = questionAndAnswers[0];
+    //String thisQuestion = questionList[questionNumber];
+
+    String thisQuestion = questionClass.questionClassList[questionNumber];
+
     print('thisQuestion = $thisQuestion');
 
     return thisQuestion;
@@ -87,17 +128,23 @@ class _MyBodyAppState extends State<MyBodyApp> {
   }
 
   bool rightAnswer(int questionNumber){
-    List answerList = questionAndAnswers[1];
-    bool thisAnswer = answerList[questionNumber];
+    print('----- rightAnswer is called');
+    //List answerList = questionAndAnswers[1];
+    //bool thisAnswer = answerList[questionNumber];
+
+    bool thisAnswer = questionClass.answerClassList[questionNumber];
+
     print('thisAnswer = $thisAnswer');
 
-    return true;
+    return thisAnswer;
   }
 
   void checkAnswer(int answerNumber, bool givenAnswer){
-    List answerList = questionAndAnswers[1];
-    bool rightAnswerHere = answerList[answerNumber];
+    print('----- checkAnswer is called');
+    //List answerList = questionAndAnswers[1];
+    //bool rightAnswerHere = answerList[answerNumber];
 
+    bool rightAnswerHere = questionClass.answerClassList[answerNumber];
     if (givenAnswer==rightAnswerHere){
       print('answer is right');
       setState(() {
@@ -111,16 +158,21 @@ class _MyBodyAppState extends State<MyBodyApp> {
   }
 
   String firstQuestion(){
+    print('----- firstQuestion is called');
+    //addQuestions();
     print('firstQuestion is called');
+    //addQuestions();
     nextQuestion = pickQuestion();
-    List questionList = questionAndAnswers[0];
-    String question = questionList[nextQuestion];
+    //List questionList = questionAndAnswers[0];
+    //String question = questionList[nextQuestion];
 
+    String question = questionClass.questionClassList[nextQuestion];
     return question;
   }
 
   @override
   Widget build(BuildContext context) {
+    addQuestions();
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -131,7 +183,7 @@ class _MyBodyAppState extends State<MyBodyApp> {
           Expanded(
             flex: 5,
               child: Center(
-                child: Text(firstQuestion(),
+                child: Text(question(nextQuestion),
                 style: TextStyle(
                   color: Colors.white,
                   ),
@@ -147,7 +199,7 @@ class _MyBodyAppState extends State<MyBodyApp> {
                     //scoreKeeper.add(Icon(Icons.check, color: Colors.green,),);
                     checkAnswer(nextQuestion,true);
                     nextQuestion = pickQuestion();
-                    question(nextQuestion);
+                    //question(nextQuestion);
                   });
                 },
                 child: Container(
@@ -173,7 +225,7 @@ class _MyBodyAppState extends State<MyBodyApp> {
                   //pickQuestion();
                   checkAnswer(nextQuestion,false);
                   nextQuestion = pickQuestion();
-                  question(nextQuestion);
+                  //question(nextQuestion);
                 });
               },
               child: Container(
